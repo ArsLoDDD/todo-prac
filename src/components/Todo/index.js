@@ -1,29 +1,45 @@
-import { Form, Formik, Field } from "formik";
 import React from "react";
-import {useTodo} from "../../hooks";
-import TodoItem from './TodoItem/index';
-import { SCHEMA_TASK_NAME } from '../../utils/schemaValidation';
+import { useTodo } from "../../hooks";
+import TodoItem from "./TodoItem/index";
+import TodoForm from "./TodoForm/index";
+import styles from "./Todo.module.scss";
+import TodoHeader from "./TodoHeader/index";
 
 const Todo = () => {
   const { tasks, addTask, setDoneTask, deleteTask } = useTodo([
     {
       id: Date.now(),
-      body: "test test",
-      isDone: false,
+      body: "Wash the car",
+      isDone: true,
     },
+    {
+      id: Date.now(),
+      body: "Do the dishes",
+      isDone: true,
+    },
+    {
+      id: Date.now(),
+      body: "Walk the dog",
+      isDone: false,
+    }
   ]);
   return (
-    <div>
-      <Formik initialValues={{ body: "Task" }} onSubmit={addTask} validationSchema={SCHEMA_TASK_NAME}>
-        <Form>
-          <Field name="body"/>
-          <input type="submit" value="add" />
-        </Form>
-      </Formik>
-      <h2>list</h2>
-      <ul>
-        <TodoItem tasks={tasks} setDoneTask={setDoneTask} deleteTask={deleteTask}/>
-      </ul>
+    <div className={styles.container}>
+      <TodoHeader />
+      <div className={styles.inputBox}>
+        <h3 className={styles.firstHeading}>New Task</h3>
+        <TodoForm addTask={addTask} />
+      </div>
+      <div className={styles.tasksList}>
+        <h3 className={styles.secondHeading}>Tasks</h3>
+        <ul>
+          <TodoItem
+            tasks={tasks}
+            setDoneTask={setDoneTask}
+            deleteTask={deleteTask}
+          />
+        </ul>
+      </div>
     </div>
   );
 };
