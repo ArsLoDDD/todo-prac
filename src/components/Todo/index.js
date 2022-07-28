@@ -13,12 +13,12 @@ const Todo = () => {
       isDone: true,
     },
     {
-      id: Date.now(),
+      id: Date.now()+1,
       body: "Do the dishes",
       isDone: true,
     },
     {
-      id: Date.now(),
+      id: Date.now()+2,
       body: "Walk the dog",
       isDone: false,
     }
