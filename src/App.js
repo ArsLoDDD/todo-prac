@@ -1,10 +1,10 @@
 import Todo from './components/Todo';
-
+import TodoHard from './components/TodoHard';
 
 function App() {
   return (
     <div>
-      <Todo />
+      <TodoHard />
     </div>
   );
 }
